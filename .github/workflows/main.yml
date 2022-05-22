@@ -15,5 +15,24 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
-        CUSTOM_TAG: true
-        TAG_CONTEXT: "Beta"
+        CUSTOM_TAG: 'custom txt'
+        
+        
+    - uses: actions/checkout@v3
+    - name: Create a Release
+      uses: elgohr/Github-Release-Action@v4
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        title: MyReleaseMessage
+      
+    - uses: actions/setup-java@v3
+      with:
+          java-version: '11'
+          distribution: 'adopt'
+    - name: Maven setup    
+      run: mvn --batch-mode deploy
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   
+   

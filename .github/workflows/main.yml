@@ -31,7 +31,7 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
     - name: Maven setup    
-      run: mvn --batch-mode deploy
+      run: mvn -4 package --file pom.xml
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
    

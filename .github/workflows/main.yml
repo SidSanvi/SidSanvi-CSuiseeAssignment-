@@ -26,13 +26,11 @@ jobs:
       with:
         title: MyReleaseMessage
       
-    - uses: actions/setup-java@v3
+    - uses: s4u/setup-maven-action@v1.2.1
       with:
-          java-version: '11'
-          distribution: 'adopt'
-    - name: Maven setup    
-      run: mvn -f pom.xml
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          java-version: 11
+
+    - name: Build with Maven
+      run: mvn verify
    
    

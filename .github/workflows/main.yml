@@ -17,20 +17,21 @@ jobs:
         WITH_V: true
         CUSTOM_TAG: 'text1'
   
-    
-    - name: maven setup  
     - uses: s4u/setup-maven-action@v1.2.1
       with:
           java-version: 11
 
-    - name: maven run
+    - name: Build with Maven
       run: mvn verify
     
+    - uses: actions/checkout@v3
     - name: Create a Release
       uses: elgohr/Github-Release-Action@v4
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         title: MyReleaseMessage
+      
+    
    
    

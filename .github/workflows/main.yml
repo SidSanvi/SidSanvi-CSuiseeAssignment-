@@ -17,6 +17,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         title: MyReleaseMessage
+        
+    - name: Publish new version
+      run: |
+          git tag -fa v4 -m "Update v4 tag"
     
    
    

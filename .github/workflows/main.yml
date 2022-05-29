@@ -16,7 +16,6 @@ jobs:
       uses: anothrNick/github-tag-action@1.36.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        WITH_V: true
         CUSTOM_TAG: 'text1'
   
     - uses: s4u/setup-maven-action@v1.2.1

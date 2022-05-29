@@ -1,0 +1,34 @@
+name: Bump version
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+    - name: Bump version and push tag
+      uses: anothrNick/github-tag-action@1.36.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        WITH_V: true
+        CUSTOM_TAG: 'text1'
+    
+    - uses: actions/checkout@v3
+    - name: Create a Release
+      uses: elgohr/Github-Release-Action@v4
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        title: MyReleaseMessage
+      
+    - uses: s4u/setup-maven-action@v1.2.1
+      with:
+          java-version: 11
+
+    - name: Build with Maven
+      run: mvn verify
+   
